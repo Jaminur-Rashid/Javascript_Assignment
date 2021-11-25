@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/hotel-datepicker@4.0.2/dist/css/hotel-datepicker.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/fecha@4.2.1/lib/fecha.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hotel-datepicker@4.0.2/dist/js/hotel-datepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="HomePage.css" />
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <!--import font awesome-->
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <!-- usefull 
+    <link
+      rel="stylesheet"
+      href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css"
+    />
+    <link rel="stylesheet" href="/resources/demos/style.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+    -->
+    <!--
+      Hotel datepicker
+    -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+    <!--
+      Price range slider cdn
+    -->
+    <link
+      rel="stylesheet"
+      href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css"
+    />
+    <link rel="stylesheet" href="/resources/demos/style.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+    <!--
+      Google place suggestion CDN
+    -->
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyArTUpPxK58U3xCnOuoFYGMtLfce4S0Ok4"></script>
+    <script src="Javascript/Place_Suggestion.js"></script>
+    <script src="Javascript/Guest_Counter.js"></script>
+    <!--<script src="Javascript/Range_Slider.js"></script>-->
+    <script src="Javascript/Hotel_Datepicker.js"></script>
+    <script src="Javascript/Show_Details.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <title>Assignment One</title>
+  </head>
+
+  <body>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+
+    <!--Top Navigation bar starts here-->
+    <div>
+      <div class="topNavbar">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container-fluid">
+            <div class="dropdown">
+              <i
+                class="fa fa-bars dropbtn btn"
+                style="font-size: 36px"
+                type="button"
+                id="dropdownMenuButton1"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              ></i>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li>
+                  <a class="dropdown-item" href="#" style="color: black"
+                    >Home</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#" style="color: black"
+                    >Bookmarked</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#" style="color: black"
+                    >List Of Your Property</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#" style="color: black"
+                    >About</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#" style="color: black">Faq</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#" style="color: black"
+                    >Blog</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <img src="Images/PageLogo.png" alt="My test image" />
+
+            <nav class="navbar navbar-light bg-light">
+              <div class="container-fluid">
+                <form onsubmit="return false;" id="dropdown-form">
+                  <input
+                    type="search"
+                    placeholder="Search"
+                    aria-label="Search"
+                    style="height: 40px"
+                    id="place-suggetion"
+                  />
+                  <input id="input-id" placeholder="Check In > Check Out" type="text" style="height: 40px" />
+                  <!--
+                   guest dropdown starts 
+                 -->
+                  <div class="dropdown">
+                    <button
+                      class="btn"
+                      type="button"
+                      id="dropdownMenuButton"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                      style="width: 100px"
+                    >
+                      Guest
+                    </button>
+                    <ul
+                      class="dropdown-menu"
+                      aria-labelledby="dropdownMenuButton"
+                    >
+                      <li>
+                        <div class="adetsay">
+                          <button class="guest-button">Guest</button>
+                          <input type="button" value="-" onclick="minus()" />
+                          <input type="text" value="1" id="adet" />
+                          <input
+                            type="button"
+                            value="+"
+                            class="barti"
+                            onclick="plus()"
+                          />
+                          <div class="button-container">
+                            <button class="apply" onclick="applyGuest()">
+                              Apply
+                            </button>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                  <!--
+                   Guest dropdown ends here
+                 -->
+                  <!--
+                   Price Range dropdown starts 
+                 -->
+                  <div class="dropdown">
+                    <button
+                      class="btn"
+                      type="button"
+                      id="price-button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                      style="width: 100px"
+                    >
+                    Price
+                    </button>
+                    <ul
+                      class="dropdown-menu"
+                      aria-labelledby="dropdownMenuButton"
+                    >
+                      <li>
+                        <div class="price-range-container">
+                          <label for="min_price" class="form-label"
+                          >Price range : </label
+                        >
+                        <span id="price-range"></span>
+                        <input
+                          type="range"
+                          class="form-range"
+                          min="0"
+                          max="1000"
+                          step="1"
+                          id="customRange3"
+                        />
+                        <input
+                          type="range"
+                          class="form-range"
+                          min="0"
+                          max="1000"
+                          step="1"
+                          id="max-price"
+                        />
+                        <button onclick="rangeSlider()" id="price-apply-btn"> Apply</button>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                  <!--
+                   Price Range dropdown ends here
+                 -->
+                  <!--Show details models starts here-->
+                  <button
+                    type="button"
+                    class="btn"
+                    id="srch-btn"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
+                    onclick="showData()"
+                  >
+                    Search
+                  </button>
+                  <!-- Modal -->
+                  <div
+                    class="modal fade"
+                    id="exampleModal"
+                    tabindex="-1"
+                    aria-labelledby="exampleModalLabel"
+                    aria-hidden="true"
+                  >
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">
+                            Modal title
+                          </h5>
+                          <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                          ></button>
+                        </div>
+                        <div class="modal-body">
+                          <p id="tot-guest"></p>
+                          <p id="date-value"></p>
+                          <p id="date-value-one"></p>
+                          <p id="place-id"></p>
+                          <p id="price-id"></p>
+                        </div>
+                        <div class="modal-footer">
+                          <button
+                            type="button"
+                            class="btn btn-secondary"
+                            data-bs-dismiss="modal"
+                          >
+                            Close
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!--Show details models ends here-->
+                  <!--
+                  <button type="button" class="btn btn-success" id="filter-btn">
+                    Filter
+                  </button>
+                -->
+                </form>
+              </div>
+            </nav>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <!--Top Navigation bar ends here-->
+    <!--
+  Text display starts here
+-->
+    <div style="color: red">Dagaha</div>
+    <!--
+  Text display Ends here
+-->
+    <!--flexbox card section starts here-->
+    <div>
+      <div class="flex-container">
+        <div id="card-id">
+          <div class="image-container">
+            <img
+              src="Images/iamge_1.jpg"
+              alt="My test image"
+              style="width: 100%; height: 200px"
+            />
+            <div class="topright">
+              More Photos
+              <i class="fa fa-external-link"></i>
+            </div>
+            <div class="left-buttom">Great Deals</div>
+            <div class="right-buttom-1">
+              <i class="fa fa-heart"></i>
+            </div>
+            <div class="right-buttom">
+              <i class="fa fa-map-marker"></i>
+            </div>
+          </div>
+          <div class="card-text">
+            <h6>Tiger Garden Int Hotel</h6>
+            <p>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              153 Reviews
+            </p>
+            <div>
+              <p>Sleeps 12</p>
+              <p class="card-button">View Details</p>
+            </div>
+            <p id="buttom-text" style="margin-bottom: 5px">
+              <span><i class="fa fa-check" aria-hidden="true"></i> </span>
+              Kitchen
+              <span style="padding-left: 30px"
+                ><i class="fa fa-check" aria-hidden="true"></i
+              ></span>
+              Air Conditioner
+              <span class="id-text">BC-122676788</span>
+            </p>
+          </div>
+        </div>
+        <div id="card-id">
+          <div class="image-container">
+            <img
+              src="Images/iamge_1.jpg"
+              alt="My test image"
+              style="width: 100%; height: 200px"
+            />
+            <div class="topright">
+              More Photos
+              <i class="fa fa-external-link"></i>
+            </div>
+            <div class="left-buttom">Great Deals</div>
+            <div class="right-buttom-1">
+              <i class="fa fa-heart"></i>
+            </div>
+            <div class="right-buttom">
+              <i class="fa fa-map-marker"></i>
+            </div>
+          </div>
+          <div class="card-text">
+            <h5>Tiger Garden Int Hotel</h5>
+            <p>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star-half checked"></span>
+              153 Reviews
+            </p>
+            <div>
+              <p>Sleeps 12</p>
+              <p class="card-button">View Details</p>
+            </div>
+            <p id="buttom-text" style="margin-bottom: 10px">
+              <span><i class="fa fa-check" aria-hidden="true"></i> </span>
+              Kitchen
+              <span style="padding-left: 30px"
+                ><i class="fa fa-check" aria-hidden="true"></i
+              ></span>
+              Air Conditioner
+              <span class="id-text">BC-122676788</span>
+            </p>
+          </div>
+        </div>
+        <div id="card-id">
+          <div class="image-container">
+            <img
+              src="Images/iamge_1.jpg"
+              alt="My test image"
+              style="width: 100%; height: 200px"
+            />
+            <div class="topright">
+              More Photos
+              <i class="fa fa-external-link"></i>
+            </div>
+            <div class="left-buttom">Great Deals</div>
+            <div class="right-buttom-1">
+              <i class="fa fa-heart"></i>
+            </div>
+            <div class="right-buttom">
+              <i class="fa fa-map-marker"></i>
+            </div>
+          </div>
+          <div class="card-text">
+            <h6>Tiger Garden Int Hotel</h6>
+            <p>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              153 Reviews
+            </p>
+            <div>
+              <p>Sleeps 12</p>
+              <p class="card-button">View Details</p>
+            </div>
+            <p id="buttom-text" style="margin-bottom: 5px">
+              <span><i class="fa fa-check" aria-hidden="true"></i> </span>
+              Kitchen
+              <span style="padding-left: 30px"
+                ><i class="fa fa-check" aria-hidden="true"></i
+              ></span>
+              Air Conditioner
+              <span class="id-text">BC-122676788</span>
+            </p>
+          </div>
+        </div>
+        <div id="card-id">
+          <div class="image-container">
+            <img
+              src="Images/iamge_1.jpg"
+              alt="My test image"
+              style="width: 100%; height: 200px"
+            />
+            <div class="topright">
+              More Photos
+              <i class="fa fa-external-link"></i>
+            </div>
+            <div class="left-buttom">Great Deals</div>
+            <div class="right-buttom-1">
+              <i class="fa fa-heart"></i>
+            </div>
+            <div class="right-buttom">
+              <i class="fa fa-map-marker"></i>
+            </div>
+          </div>
+          <div class="card-text">
+            <h6>Tiger Garden Int Hotel</h6>
+            <p>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              153 Reviews
+            </p>
+            <div>
+              <p>Sleeps 12</p>
+              <p class="card-button">View Details</p>
+            </div>
+            <p id="buttom-text" style="margin-bottom: 5px">
+              <span><i class="fa fa-check" aria-hidden="true"></i> </span>
+              Kitchen
+              <span style="padding-left: 30px"
+                ><i class="fa fa-check" aria-hidden="true"></i
+              ></span>
+              Air Conditioner
+              <span class="id-text">BC-122676788</span>
+            </p>
+          </div>
+        </div>
+        <div id="card-id">
+          <div class="image-container">
+            <img
+              src="Images/iamge_1.jpg"
+              alt="My test image"
+              style="width: 100%; height: 200px"
+            />
+            <div class="topright">
+              More Photos
+              <i class="fa fa-external-link"></i>
+            </div>
+            <div class="left-buttom">Great Deals</div>
+            <div class="right-buttom-1">
+              <i class="fa fa-heart"></i>
+            </div>
+            <div class="right-buttom">
+              <i class="fa fa-map-marker"></i>
+            </div>
+          </div>
+          <div class="card-text">
+            <h6>Tiger Garden Int Hotel</h6>
+            <p>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              153 Reviews
+            </p>
+            <div>
+              <p>Sleeps 12</p>
+              <p class="card-button">View Details</p>
+            </div>
+            <p id="buttom-text" style="margin-bottom: 5px">
+              <span><i class="fa fa-check" aria-hidden="true"></i> </span>
+              Kitchen
+              <span style="padding-left: 30px"
+                ><i class="fa fa-check" aria-hidden="true"></i
+              ></span>
+              Air Conditioner
+              <span class="id-text">BC-122676788</span>
+            </p>
+          </div>
+        </div>
+        <div id="card-id">
+          <div class="image-container">
+            <img
+              src="Images/iamge_1.jpg"
+              alt="My test image"
+              style="width: 100%; height: 200px"
+            />
+            <div class="topright">
+              More Photos
+              <i class="fa fa-external-link"></i>
+            </div>
+            <div class="left-buttom">Great Deals</div>
+            <div class="right-buttom-1">
+              <i class="fa fa-heart"></i>
+            </div>
+            <div class="right-buttom">
+              <i class="fa fa-map-marker"></i>
+            </div>
+          </div>
+          <div class="card-text">
+            <h6>Tiger Garden Int Hotel</h6>
+            <p>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              153 Reviews
+            </p>
+            <div>
+              <p>Sleeps 12</p>
+              <span>
+                <p class="card-button">View Details</p>
+              </span>
+            </div>
+            <div style="margin-bottom: 5px">
+              <p id="buttom-text">
+                <span><i class="fa fa-check" aria-hidden="true"></i> </span>
+                Kitchen
+                <span style="padding-left: 30px"
+                  ><i class="fa fa-check" aria-hidden="true"></i
+                ></span>
+                Air Conditioner
+                <span class="id-text">BC-122676788</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--flexbox card section ends here-->
+    <div>
+      <div id="map"></div>
+    </div>
+  </body>
+
+  <script>
+    var hdpkr = new HotelDatepicker(document.getElementById("input-id"));
+    function rangeSlider(){
+      var minValue=document.getElementById("customRange3").value;
+      var maxValue=document.getElementById("max-price").value;
+      document.getElementById("price-range").innerHTML=minValue+'-'+maxValue;
+      document.getElementById("price-button").innerHTML=minValue+'-'+maxValue;
+
+      alert("min value "+minValue);
+    }
+    /*
+    function showData() {
+      console.log("Show data works");
+      document.getElementById("tot-guest").innerHTML =
+        "Total Guest Is : " + numOfGuest;
+      document.getElementById("tot-guest").style.color = "blue";
+      var dateValue = document.getElementById("input-id").value;
+      var placeValue=document.getElementById("place-suggetion").value;
+      document.getElementById("date-value").innerHTML =
+        "Date value is : " + dateValue;
+        document.getElementById("place-id").innerHTML =
+        "Date value is : " + placeValue;
+    }
+    */
+    
+  </script>
+</html>
